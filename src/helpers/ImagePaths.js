@@ -12,8 +12,8 @@ const ducks = {
   sleeping: "sleeping-duck.png",
   smart: "smart-duck.png",
   standard: "standard-duck.png",
-  tired: "tired-duck.png"
-}
+  tired: "tired-duck.png",
+};
 
 // const areas = {
 //   flatironPond: "flatiron-pond.png",
@@ -21,5 +21,5 @@ const ducks = {
 // }
 
 export default {
-  ducks
-}
+  ducks,
+};

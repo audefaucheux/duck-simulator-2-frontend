@@ -1,6 +1,6 @@
-import React from "react"
-import DuckList from "../components/DuckList"
-import DuckDetails from "../components/DuckDetails"
+import React from "react";
+import DuckList from "../components/DuckList";
+import DuckDetails from "../components/DuckDetails";
 
 const DuckContainer = ({
   areas,
@@ -13,13 +13,13 @@ const DuckContainer = ({
   squeakDuck,
   killDuck,
   handleDuckSelection,
-  currentUser
+  currentUser,
 }) => {
   const filteredDucks = () => {
     return ducks.filter(
-      duck => !currentUser || duck.user.username === currentUser.username
-    )
-  }
+      (duck) => !currentUser || duck.user.username === currentUser.username
+    );
+  };
 
   return (
     <div>
@@ -34,7 +34,7 @@ const DuckContainer = ({
             sleepChange,
             squeakDuck,
             killDuck,
-            currentUser
+            currentUser,
           }}
           removeCurrentDuck={() => handleDuckSelection(null)}
         />
@@ -44,7 +44,7 @@ const DuckContainer = ({
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default DuckContainer
+export default DuckContainer;

@@ -1,8 +1,8 @@
-import React from "react"
-import ActionsMenu from "../components/ActionsMenu"
-import Helpers from "../helpers/Helpers"
-import "../stylesheets/DuckDetails.css"
-import Images from "../helpers/ImagePaths"
+import React from "react";
+import ActionsMenu from "../components/ActionsMenu";
+import Helpers from "../helpers/Helpers";
+import "../stylesheets/DuckDetails.css";
+import Images from "../helpers/ImagePaths";
 
 const DuckDetails = ({
   name,
@@ -22,17 +22,17 @@ const DuckDetails = ({
   squeakDuck,
   killDuck,
   removeCurrentDuck,
-  currentUser
+  currentUser,
 }) => {
   const displayImage = Helpers.displayImage(
     "duck-drawings",
     Images.ducks.standard,
     `${color}-${Images.ducks[mood]}`
-  )
+  );
 
   const belongsToCurrentUser = () => {
-    return currentUser ? currentUser.username === user.username : false
-  }
+    return currentUser ? currentUser.username === user.username : false;
+  };
 
   return (
     <div id="duck-details">
@@ -51,7 +51,9 @@ const DuckDetails = ({
           {name} {gender === "female" ? "♀️" : "♂️"}
         </strong>
         <p>Mood: {mood}</p>
-        <p className={hunger > 9 ? "red" : "normal"}>Hunger: <span id="hunger-value">{hunger}</span></p>
+        <p className={hunger > 9 ? "red" : "normal"}>
+          Hunger: <span id="hunger-value">{hunger}</span>
+        </p>
         <p>Owner: {user.username}</p>
         {/* <p>Area: {area.name}</p> */}
         <img src={displayImage} alt={name} width="50%" />
@@ -71,12 +73,12 @@ const DuckDetails = ({
             takeDuckForSwim,
             sleepChange,
             squeakDuck,
-            killDuck
+            killDuck,
           }}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DuckDetails
+export default DuckDetails;

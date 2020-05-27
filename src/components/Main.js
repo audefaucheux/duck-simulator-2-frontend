@@ -1,92 +1,98 @@
-import React, { useState, useEffect } from "react"
-import "../stylesheets/Main.css"
-import DuckContainer from "../containers/DuckContainer"
-import AreaContainer from "../containers/AreaContainer"
-import API from "../adapters/API"
-import Helpers from "../helpers/Helpers"
+import React, { useState, useEffect } from "react";
+import "../stylesheets/Main.css";
+import DuckContainer from "../containers/DuckContainer";
+import AreaContainer from "../containers/AreaContainer";
+import API from "../adapters/API";
+import Helpers from "../helpers/Helpers";
 
-const Main = ({ currentUser, currentDuck, setCurrentDuck, currentAreaId, setCurrentAreaId }) => {
-  const [ducks, setDucks] = useState([])
-  const [areas, setAreas] = useState([])
+const Main = ({
+  currentUser,
+  currentDuck,
+  setCurrentDuck,
+  currentAreaId,
+  setCurrentAreaId,
+}) => {
+  const [ducks, setDucks] = useState([]);
+  const [areas, setAreas] = useState([]);
 
   useEffect(() => {
-    API.getDucks().then(ducks => {
-      API.getAreas().then(areas => {
-        setDucks(ducks)
-        setAreas(areas)
+    API.getDucks().then((ducks) => {
+      API.getAreas().then((areas) => {
+        setDucks(ducks);
+        setAreas(areas);
         // setCurrentDuck(newDuck)
         // console.log(`a new duck was created: ${newDuck}`)
-      })
-    })
-  }, [currentDuck])
+      });
+    });
+  }, [currentDuck]);
 
-  const feedDuck = duck => {
-    console.log(`${duck.name} ate some tasty bread`)
-    API.patchDuck(duck, { mood: "happy", hunger: 0 }).then(setCurrentDuck)
-  }
+  const feedDuck = (duck) => {
+    console.log(`${duck.name} ate some tasty bread`);
+    API.patchDuck(duck, { mood: "happy", hunger: 0 }).then(setCurrentDuck);
+  };
 
-  const takeDuckForSwim = duck => {
-    console.log(`${duck.name} went for a swim`)
-    let newHunger = Helpers.increaseToMax10(duck.hunger, 5)
-    let mood = newHunger > 9 ? "hangry" : "happy"
-    API.patchDuck(duck, { mood, hunger: newHunger }).then(setCurrentDuck)
-  }
+  const takeDuckForSwim = (duck) => {
+    console.log(`${duck.name} went for a swim`);
+    let newHunger = Helpers.increaseToMax10(duck.hunger, 5);
+    let mood = newHunger > 9 ? "hangry" : "happy";
+    API.patchDuck(duck, { mood, hunger: newHunger }).then(setCurrentDuck);
+  };
 
-  const squeakDuck = duck => {
+  const squeakDuck = (duck) => {
     if (duck.alive) {
-      console.log(`${duck.mood} noises...`)
+      console.log(`${duck.mood} noises...`);
     } else {
-      console.log(`silence... :(`)
+      console.log(`silence... :(`);
     }
-    let newHunger = Helpers.increaseToMax10(duck.hunger, 2)
-    let mood = newHunger > 9 ? "hangry" : "happy"
-    API.patchDuck(duck, { hunger: newHunger, mood }).then(setCurrentDuck)
-  }
+    let newHunger = Helpers.increaseToMax10(duck.hunger, 2);
+    let mood = newHunger > 9 ? "hangry" : "happy";
+    API.patchDuck(duck, { hunger: newHunger, mood }).then(setCurrentDuck);
+  };
 
-  const sleepChange = duck => {
-    let duckData = {}
+  const sleepChange = (duck) => {
+    let duckData = {};
     if (duck.awake) {
-      duckData = { awake: false, mood: "sleeping" }
+      duckData = { awake: false, mood: "sleeping" };
     } else {
       if (duck.hunger > 9) {
-        duckData = { awake: true, mood: "hangry" }
+        duckData = { awake: true, mood: "hangry" };
       } else {
-        duckData = { awake: true, mood: "happy" }
+        duckData = { awake: true, mood: "happy" };
       }
     }
-    API.patchDuck(duck, duckData).then(setCurrentDuck)
-  }
+    API.patchDuck(duck, duckData).then(setCurrentDuck);
+  };
 
-  const killDuck = duck => {
+  const killDuck = (duck) => {
     if (window.confirm(`Are you sure you want to kill ${duck.name}??`)) {
-      console.log(`${duck.name} died! :(`)
-      API.patchDuck(duck, { alive: false, mood: "dead" }).then(setCurrentDuck)
+      console.log(`${duck.name} died! :(`);
+      API.patchDuck(duck, { alive: false, mood: "dead" }).then(setCurrentDuck);
     }
-  }
+  };
 
-  const handleDuckChangeArea = event => {
-    let areaId = parseInt(event.target.value, 10)
-    API.patchDuck(currentDuck, { area_id: areaId }).then(setCurrentDuck)
-    setCurrentAreaId(areaId)
-  }
+  const handleDuckChangeArea = (event) => {
+    let areaId = parseInt(event.target.value, 10);
+    API.patchDuck(currentDuck, { area_id: areaId }).then(setCurrentDuck);
+    setCurrentAreaId(areaId);
+  };
 
-  const handleDuckSelection = duck => {
-    setCurrentDuck(duck)
+  const handleDuckSelection = (duck) => {
+    setCurrentDuck(duck);
     if (duck === null) {
-      setCurrentAreaId(null)
+      setCurrentAreaId(null);
     } else {
-      setCurrentAreaId(duck.area.id)
+      setCurrentAreaId(duck.area.id);
     }
-  }
+  };
 
-  const handleClickAreaDuck = duckId => {
-    let duckSelected = ducks.find(duck => duck.id === duckId)
-    setCurrentDuck(duckSelected)
-  }
+  const handleClickAreaDuck = (duckId) => {
+    let duckSelected = ducks.find((duck) => duck.id === duckId);
+    setCurrentDuck(duckSelected);
+  };
 
   const findCurrentArea = () => {
-    return areas.find(area => area.id === currentAreaId)
-  }
+    return areas.find((area) => area.id === currentAreaId);
+  };
 
   return (
     <div className="main-container">
@@ -98,7 +104,7 @@ const Main = ({ currentUser, currentDuck, setCurrentDuck, currentAreaId, setCurr
             handleDuckSelection,
             handleDuckChangeArea,
             areas,
-            currentUser
+            currentUser,
           }}
           feedDuck={() => feedDuck(currentDuck)}
           takeDuckForSwim={() => takeDuckForSwim(currentDuck)}
@@ -114,7 +120,7 @@ const Main = ({ currentUser, currentDuck, setCurrentDuck, currentAreaId, setCurr
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

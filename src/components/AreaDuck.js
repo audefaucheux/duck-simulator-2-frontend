@@ -1,7 +1,7 @@
-import React from "react"
-import "../stylesheets/AreaDuck.css"
-import Helpers from "../helpers/Helpers"
-import Images from "../helpers/ImagePaths"
+import React from "react";
+import "../stylesheets/AreaDuck.css";
+import Helpers from "../helpers/Helpers";
+import Images from "../helpers/ImagePaths";
 
 const AreaDuck = ({
   id,
@@ -9,15 +9,15 @@ const AreaDuck = ({
   color,
   handleClickAreaDuck,
   mood,
-  currentDuck
+  currentDuck,
 }) => {
   const displayImage = Helpers.displayImage(
     "duck-drawings",
     Images.ducks.standard,
     `${color}-${Images.ducks[mood]}`
-  )
+  );
 
-  const isCurrentDuck = () => currentDuck !== null && currentDuck.id === id
+  const isCurrentDuck = () => currentDuck !== null && currentDuck.id === id;
 
   return (
     <div className="duck-container">
@@ -30,7 +30,7 @@ const AreaDuck = ({
         className={isCurrentDuck() ? "duck-selected" : ""}
       ></img>
     </div>
-  )
-}
+  );
+};
 
-export default AreaDuck
+export default AreaDuck;

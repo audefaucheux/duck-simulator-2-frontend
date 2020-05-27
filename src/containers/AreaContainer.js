@@ -1,13 +1,13 @@
-import React from "react"
-import AreaList from "../components/AreaList"
-import AreaDetails from "../components/AreaDetails"
+import React from "react";
+import AreaList from "../components/AreaList";
+import AreaDetails from "../components/AreaDetails";
 
 const AreaContainer = ({
   areas,
   currentArea,
   setCurrentAreaId,
   handleClickAreaDuck,
-  currentDuck
+  currentDuck,
 }) => {
   return (
     <div>
@@ -20,7 +20,7 @@ const AreaContainer = ({
         <AreaList {...{ areas, setCurrentAreaId }} />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AreaContainer
+export default AreaContainer;

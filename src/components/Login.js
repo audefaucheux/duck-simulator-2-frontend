@@ -1,5 +1,5 @@
-import React from "react"
-import "../stylesheets/Login.css"
+import React from "react";
+import "../stylesheets/Login.css";
 
 function Login({ handleLogin }) {
   return (
@@ -33,7 +33,7 @@ function Login({ handleLogin }) {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

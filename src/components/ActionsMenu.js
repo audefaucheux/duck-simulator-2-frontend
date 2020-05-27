@@ -1,6 +1,6 @@
-import React from "react"
-import Helpers from "../helpers/Helpers"
-import "../stylesheets/ActionsMenu.css"
+import React from "react";
+import Helpers from "../helpers/Helpers";
+import "../stylesheets/ActionsMenu.css";
 
 const ActionsMenu = ({
   alive,
@@ -14,7 +14,7 @@ const ActionsMenu = ({
   sleepChange,
   squeakDuck,
   takeDuckForSwim,
-  belongsToCurrentUser
+  belongsToCurrentUser,
 }) => {
   // const [areaId, setAreaId] = useState(area.id)
 
@@ -22,14 +22,14 @@ const ActionsMenu = ({
   //   setAreaId(event.target.value)
   // }
   const failsStandardCheck = () => {
-    return !belongsToCurrentUser || !alive
-  }
+    return !belongsToCurrentUser || !alive;
+  };
 
-  const audio = new Audio(require("../audio/duck-quack.mp3"))
+  const audio = new Audio(require("../audio/duck-quack.mp3"));
 
   const playSqueak = () => {
-    audio.play()
-  }
+    audio.play();
+  };
 
   return (
     <div className="actions-list">
@@ -61,8 +61,8 @@ const ActionsMenu = ({
       <div>
         <button
           onClick={() => {
-            squeakDuck()
-            playSqueak()
+            squeakDuck();
+            playSqueak();
           }}
           disabled={failsStandardCheck() || !awake || hunger > 9}
         >
@@ -83,7 +83,7 @@ const ActionsMenu = ({
           value={area.id}
           onChange={handleDuckChangeArea}
         >
-          {areas.map(area => (
+          {areas.map((area) => (
             <option key={area.id} value={area.id}>
               {`${Helpers.areaEmojis[area.name]} ${area.name}`}
             </option>
@@ -91,7 +91,7 @@ const ActionsMenu = ({
         </select>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ActionsMenu
+export default ActionsMenu;

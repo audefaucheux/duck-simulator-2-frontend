@@ -1,7 +1,7 @@
-import React from "react"
-import AreaDuckList from "../containers/AreaDuckList"
-import "../stylesheets/AreaDetails.css"
-import Helpers from "../helpers/Helpers"
+import React from "react";
+import AreaDuckList from "../containers/AreaDuckList";
+import "../stylesheets/AreaDetails.css";
+import Helpers from "../helpers/Helpers";
 
 const AreaDetails = ({
   name,
@@ -9,17 +9,17 @@ const AreaDetails = ({
   removeCurrentArea,
   ducks,
   handleClickAreaDuck,
-  currentDuck
+  currentDuck,
 }) => {
   const backgroundImg = Helpers.displayImage(
     "areas",
     "flatiron-pond.png",
     image_url
-  )
+  );
 
   const divStyle = {
-    backgroundImage: `url(${backgroundImg})`
-  }
+    backgroundImage: `url(${backgroundImg})`,
+  };
 
   return (
     <div className="area-details">
@@ -36,7 +36,7 @@ const AreaDetails = ({
         <AreaDuckList {...{ ducks, handleClickAreaDuck, currentDuck }} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AreaDetails
+export default AreaDetails;
